@@ -1,0 +1,252 @@
+.Logo {
+  background-image: url(./images/logo.png);
+  background-size: cover;
+  background-color: white;
+  background-repeat: no-repeat;
+  display: block;
+  width: 150px;
+  height: 40px;
+  justify-content: center;
+  margin: 5px;
+  margin-left: 20px;
+ 
+}
+.home{
+  background-image: url(./images/home.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 400px;
+}
+.container-fluid {
+  margin: 10px;
+}
+.navbar-inverse {
+  background-color: #ffff;
+  border-color: #ffff;
+}
+.block {
+  color: black;
+  text-align: center;
+  display: block;
+}
+.u-margin-bottom {
+  margin-bottom: 60px;
+  
+}
+.mr{
+  margin-left: -10%;
+}
+.form-block{
+  border-radius: 5px;
+  background-color: #ececec;
+  margin-top: 30px ;
+  margin-left :35%;
+  display: block;
+  width: 30%;
+  height: 100%;
+  padding: 20px
+}
+.form1-block{
+  border-radius: 5px;
+  margin-top: 30px ;
+  padding-top: 40%;
+  margin-left :15%;
+  display: block;
+  width: 70%;
+  height: 30%;
+  padding: 20px
+}
+.s-block {
+  display: block;
+  width:43%
+}
+.s1-block, .u-block{
+  display: block;
+  width:90%
+}
+.s-row{
+  display: flex;
+  flex-wrap: wrap;
+  margin:15px 15px 30px 15px;
+}
+.input1{
+  
+  width: 95%;
+  height: 35px;
+  border-radius: 5px;
+  border: 1px solid #6b6b83;
+}
+.input2{
+  padding:5px;
+  width: 95%;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #6b6b83;
+}
+
+.m{
+  margin-left: 15px;
+}
+.s-btn-primary {
+  color: #fff;
+  background: #0070eb;
+  border-color: #0070eb;
+}
+.s-btn {
+  width: 95%;
+  height: 100%;
+  border-radius: 5px;
+  padding: 8px 16px 7px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  transition:.2s ease;
+  -ms-text-size-adjust: 100%;
+  
+}
+.s4-btn {
+  height: 100%;
+  border-radius: 5px;
+  padding: 8px 16px 7px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  transition:.2s ease;
+  -ms-text-size-adjust: 100%;
+  font-weight: 700;
+  
+}
+.s1-btn{
+  border: 1px solid #6b6b83;
+  width:70%;
+  height: 40px;
+  border-radius: 5px;
+  margin: 5px 80px 0px 20px;
+}
+.s2-btn{
+  border: 1px solid #6b6b83;
+  width:20%;
+  height: 40px;
+  border-radius: 5px;
+  margin: 5px 80px 0px 20px;
+}
+.s3-btn{
+  border: 1px solid #6b6b83;
+  width: 30%;
+  height: 30px;
+  border-radius: 5px;
+  background-color: rgb(19, 170, 55);
+  color: whitesmoke;
+  
+}
+.label2{
+  margin-top: 175px;
+  color: white;
+}
+.label1{
+  color:black;
+}
+.s-col1{
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+.s-col2{
+  position: relative;
+  min-height: 1px;
+  width: 100%;
+}
+.u-dimension-2 {
+  box-shadow: 0 0 0 1px rgba(67,41,163,.1), 
+  0 1px 8px 0 rgba(67,41,163,.1);
+}
+.s-box1{
+  padding-left: 12px;
+  padding-right: 12px;
+  background: #fff;
+}
+.account-nav-items-item {
+  margin: 0;
+  padding: 5px 0;
+}
+.account-nav-items {
+  padding: 0;
+  list-style: none;
+}
+.active .navlink{
+  color: rgba(0,0,0,.87);
+}
+
+.account-content {
+  min-height: 100vh;
+}
+.u-list {
+  box-shadow: 0 0 0 1px rgba(67,41,163,.08), 0 1px 5px 0 rgba(67,41,163,.08);
+  background: #fff;
+  border-radius: 3px;
+}
+.s-col-md-9 {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+.s-col-md-8 {
+  flex: 0 0 75%;
+  max-width: 50%;
+}
+.u-list-heading{
+  padding: 12px 16px;
+}
+.color1{
+  color: #0070eb;
+}
+.h5{
+  font-size: 17.7px;
+  line-height: 1.51741;
+}
+.u-flex-justify{
+  justify-content: space-between;
+}
+.u-flex-align{
+  align-items: center;
+}
+.u-flex{
+  display: flex;
+}
+.u-width{
+    width: 100px;
+}
+.u-mar1{
+  margin: 8px;
+  width: 200px;
+}
+.f-list-item{
+  background: #fff;
+  border-bottom: 1px solid #d4d4db;
+}
+.s-list-item-primary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.s-list-item-secondary {
+  font-size: smaller;
+  color: #6b6b83;
+  margin-top: 8px;
+}
+.span{
+  padding-right: 4px;
+}
+.edit{
+  text-decoration: none;
+  color: #0070eb;
+  transition: color .2s ease;
+  cursor: pointer;
+  margin-right: 30px;
+  margin-bottom: 4px;
+  font-size: 16px;
+  line-height: 1.45;
+  font-family: graphik;
+  font-weight: 400;
+
+}
