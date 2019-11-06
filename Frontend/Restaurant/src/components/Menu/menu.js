@@ -8,60 +8,24 @@ import { array } from 'prop-types';
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 
-
-//create the Navbar Component
 class Menu extends Component {
     constructor(props) {
         super(props);
         this.state = {
             items: [],
             menusection: [],
-            section:{}
-            //  r_id:""
+            section: {}
+
         }
     }
-    // ridchange=(e)=>{
-    //     this.setState({
-    //         r_id: e.target.value
-    //     })
-    // }
+
     componentDidMount(e) {
         //e.preventDefault();
         console.log("in componentdidmount")
-        var data={
-            res_email:sessionStorage.getItem('user_email')
+        var data = {
+            res_email: sessionStorage.getItem('user_email')
         }
         this.props.oncomponentDidMount(data);
-        // axios.defaults.withCredentials = true;
-        // axios.post('http://localhost:3001/menu',data, { headers: { Authorization: localStorage.getItem('token') }})
-        //     .then((response) => {
-        //         console.log("response")
-        //         console.log(response.data.data)
-        //         var result = response.data.data
-        //         var section = {}
-        //         var array = []
-        //         var i = 0;
-        //         result.forEach(function (item) {
-        //             if (Object.keys(section).includes(response.data.data[i].menu_sec)) {
-        //                 array = [response.data.data[i].item_name, response.data.data[i].item_desc, response.data.data[i].item_price]
-        //                 section[response.data.data[i].menu_sec].push(array)
-                        
-        //             } 
-        //             else {
-        //                 section[response.data.data[i].menu_sec] =[ [response.data.data[i].item_name, response.data.data[i].item_desc, response.data.data[i].item_price],]
-        //             }
-            
-        //             i++;
-        //         });
-        //         console.log("section",section)
-        //         this.setState({
-        //             menusection: Object.keys(section),
-        //             section: section
-        //         })
-        //         // this.setState({
-        //         //     items : this.state.items.concat(response.data) 
-        //         // });
-        //     });
     }
 
 
@@ -78,9 +42,9 @@ class Menu extends Component {
                 <div class="u-clickable u-list">
                     <div class="u-list-heading h5">
                         <div>{menuType}</div></div>
-                        {
-                            this.props.section[menuType].map(item => {
-                                console.log("item",item)
+                    {
+                        this.props.section[menuType].map(item => {
+                            console.log("item", item)
                             return (
                                 <div class="u-clickable u-list">
                                     <div class="u-flex u-flex-justify u-flex-align">
@@ -90,15 +54,15 @@ class Menu extends Component {
                                                 <span class="span">{item[1]}</span></div>
                                         </div>
                                         <div class="edit" tabIndex="0">${item[2]}</div>
-                                        <div class="edit"  role="button"><Link to="/updateitem">Update</Link></div>
+                                        <div class="edit" role="button"><Link to="/updateitem">Update</Link></div>
                                     </div>
-                                    </div> 
-                          
+                                </div>
+
                             )
                         })
                     }
-                    </div>
-               
+                </div>
+
             )
         })
 
@@ -107,7 +71,7 @@ class Menu extends Component {
             <div>
                 {redirectVar}
                 <div class="s-row">
-                <div class="s-col1 s-col2 u-dimension-2  s-box1">
+                    <div class="s-col1 s-col2 u-dimension-2  s-box1">
                         <h3 class="account-nav-header">Your Account</h3>
                         <ul class="account-nav-items">
                             <li class="account-nav-items-item"><a href="/profile"><span>Profile</span></a></li>
@@ -144,33 +108,33 @@ const mapDispatchToProps = dispatch => {
     return {
         oncomponentDidMount: (data) => {
             var value = {
-                res_email:data.res_email
+                res_email: data.res_email
             }
             console.log(value)
             axios.defaults.withCredentials = true;
-            axios.post('http://localhost:3001/menu',value, { headers: { Authorization: localStorage.getItem('token') }})
-            .then((response) => {
-                console.log("response")
-                console.log(response.data.data)
-                var result = response.data.data
-                var section = {}
-                var array = []
-                var i = 0;
-                result.forEach(function (item) {
-                    if (Object.keys(section).includes(response.data.data[i].menu_sec)) {
-                        array = [response.data.data[i].item_name, response.data.data[i].item_desc, response.data.data[i].item_price]
-                        section[response.data.data[i].menu_sec].push(array)
-                        
-                    } 
-                    else {
-                        section[response.data.data[i].menu_sec] =[ [response.data.data[i].item_name, response.data.data[i].item_desc, response.data.data[i].item_price],]
-                    }
-            
-                    i++;
-                });
-                console.log(section)
-               dispatch({ type: 'MENU', payload: section, statusCode: 200})                       
-             })
+            axios.post('http://localhost:3001/menu', value, { headers: { Authorization: localStorage.getItem('token') } })
+                .then((response) => {
+                    console.log("response")
+                    console.log(response.data.data)
+                    var result = response.data.data
+                    var section = {}
+                    var array = []
+                    var i = 0;
+                    result.forEach(function (item) {
+                        if (Object.keys(section).includes(response.data.data[i].menu_sec)) {
+                            array = [response.data.data[i].item_name, response.data.data[i].item_desc, response.data.data[i].item_price]
+                            section[response.data.data[i].menu_sec].push(array)
+
+                        }
+                        else {
+                            section[response.data.data[i].menu_sec] = [[response.data.data[i].item_name, response.data.data[i].item_desc, response.data.data[i].item_price],]
+                        }
+
+                        i++;
+                    });
+                    console.log(section)
+                    dispatch({ type: 'MENU', payload: section, statusCode: 200 })
+                })
                 .catch((error) => {
 
                 });

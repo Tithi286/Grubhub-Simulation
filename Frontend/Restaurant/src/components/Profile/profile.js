@@ -8,27 +8,25 @@ import jwt_decode from 'jwt-decode';
 import { login } from "../../actions";
 import cookie from 'react-cookies';
 
-//create the Navbar Component
 class Profile extends Component {
     constructor(props) {
         super(props);
-        this.state={
-            edit : null,
-            r_id:"",
-            res_name:"",
+        this.state = {
+            edit: null,
+            r_id: "",
+            res_name: "",
             name: "",
             email: "",
-            email2:"",
-            phone:"",
-            resname:"",
-            cuisine:"",
-            zipcode:""
+            email2: "",
+            phone: "",
+            resname: "",
+            cuisine: "",
+            zipcode: ""
         }
         this.handlenameedit = this.handlenameedit.bind(this);
         this.handleemailedit = this.handleemailedit.bind(this);
         this.handlephoneedit = this.handlephoneedit.bind(this);
         this.handleresnameedit = this.handleresnameedit.bind(this);
-        //this.handlecuisineclick = this.handlecuisineclick.bind(this);
         this.handlepasswordedit = this.handlepasswordedit.bind(this);
         this.updatename = this.updatename.bind(this);
         this.updateemail = this.updateemail.bind(this);
@@ -40,32 +38,15 @@ class Profile extends Component {
         this.handleupdatephone = this.handleupdatephone.bind(this);
         this.handleupdateresname = this.handleupdateresname.bind(this);
     }
-    componentDidMount(){
+    componentDidMount() {
         console.log("in componentdidmount")
         var data = {
             email: localStorage.getItem('decoded_email')
         }
         this.props.Oncomponentdidmount(data)
-        
-    }
-        // axios.defaults.withCredentials = true;
-        // axios.post('http://localhost:3001/profile',data, { headers: { Authorization: localStorage.getItem('token') }})
-        //         .then((response) => {
-        //             console.log(response.data.data)
-                    
-        //         //update the state with the response data
-        //         this.setState({
-        //             r_id: response.data.data.r_id ,
-        //             res_name: response.data.data.res_name,
-        //             name: response.data.data.name ,
-        //             email: response.data.data.email,
-        //             phone: response.data.data.phone,
-        //             resname: response.data.data.res_name
 
-        //         });
-        
-        //     });
-    
+    }
+
     handlenameedit() {
         this.setState({ edit: "name" });
     }
@@ -85,65 +66,65 @@ class Profile extends Component {
     handlepasswordedit() {
         this.setState({ edit: "password" });
     }
-    updatename(e){
-        this.setState({name: e.target.value})
+    updatename(e) {
+        this.setState({ name: e.target.value })
     }
-    updateemail(e){
-        this.setState({email:e.target.value})
+    updateemail(e) {
+        this.setState({ email: e.target.value })
     }
-    updateemail2(e){
-        this.setState({email2:e.target.value})
+    updateemail2(e) {
+        this.setState({ email2: e.target.value })
     }
-    updatephone(e){
-        this.setState({phone: e.target.value})
+    updatephone(e) {
+        this.setState({ phone: e.target.value })
     }
-    updateresname(e){
-        this.setState({resname: e.target.value})
+    updateresname(e) {
+        this.setState({ resname: e.target.value })
     }
-    handleupdatename=(e)=>{
+    handleupdatename = (e) => {
         const data = {
             name: this.state.name,
             email: this.state.email,
-            
+
         }
         console.log(data);
-        this.props.Onhandleupdatename(e,data)
+        this.props.Onhandleupdatename(e, data)
+    }
+
+    handleupdateemail = (e) => {
+        const data = {
+            email: this.state.email,
+            email2: this.state.email2
         }
+        console.log(data);
+        this.props.Onhandleupdateemail(e, data)
+    }
 
-    handleupdateemail=(e)=>{
-            const data = {
-                email: this.state.email,
-                email2: this.state.email2
-            }
-            console.log(data);
-            this.props.Onhandleupdateemail(e,data)
-            }
+    handleupdatephone = (e) => {
+        const data = {
+            phone: this.state.phone,
+            email: this.state.email
+        }
+        console.log(data);
+        this.props.Onhandleupdatephone(e, data)
+    }
 
-            handleupdatephone=(e)=>{
-                const data = {
-                    phone: this.state.phone,
-                    email: this.state.email
-                }
-                console.log(data);
-                this.props.Onhandleupdatephone(e,data)
-                }
-
-                handleupdateresname=(e)=>{
-                    const data = {
-                        resname: this.state.resname,
-                        email: this.state.email
-                    }
-                    console.log(data);
-                    this.props.Onhandleupdateresname(e,data)
-                    }
+    handleupdateresname = (e) => {
+        const data = {
+            resname: this.state.resname,
+            email: this.state.email
+        }
+        console.log(data);
+        this.props.Onhandleupdateresname(e, data)
+    }
     render() {
         let redirectVar = null;
         if (localStorage.getItem('decoded_email') == null) {
             console.log("in cookie if")
             redirectVar = <Redirect to="/login" />
         }
-        sessionStorage.setItem('r_id',this.props.r_id)
-        sessionStorage.setItem('res_name',this.props.resname)
+        sessionStorage.setItem('r_id', this.props.r_id)
+        sessionStorage.setItem('res_name', this.props.resname)
         console.log(sessionStorage.getItem('r_id'));
         console.log(sessionStorage.getItem('res_name'));
         const edit = this.state.edit;
@@ -153,15 +134,15 @@ class Profile extends Component {
 
             button = (
                 <div>
-                <form onSubmit={this.handleupdatename}>
-                <h3>Edit Name</h3>
-                <p>Name</p>
-                <input class="input1" type="text" onChange={this.updatename} name="name"/>
-                <p>current Email</p>
-                <input class="input1" type="text" onChange={this.updateemail} name="email"/>
-                <button type="submit">Update</button>
-                <button>Cancel</button>
-                </form>
+                    <form onSubmit={this.handleupdatename}>
+                        <h3>Edit Name</h3>
+                        <p>Name</p>
+                        <input class="input1" type="text" onChange={this.updatename} name="name" />
+                        <p>current Email</p>
+                        <input class="input1" type="text" onChange={this.updateemail} name="email" />
+                        <button type="submit">Update</button>
+                        <button>Cancel</button>
+                    </form>
                 </div>
             )
         }
@@ -169,15 +150,15 @@ class Profile extends Component {
         else if (edit == "email") {
             button = (
                 <div>
-                <form onSubmit={this.handleupdateemail}>
-                <h3>Edit Email</h3>
-                <p>current Email</p>
-                <input class="input1" type="text" onChange={this.updateemail2} name="email2"/>
-                <p>New Email</p>
-                <input class="input1" type="text" onChange={this.updateemail} name="email"/>
-                <button type="submit">Update</button>
-                <button>Cancel</button>
-                </form>
+                    <form onSubmit={this.handleupdateemail}>
+                        <h3>Edit Email</h3>
+                        <p>current Email</p>
+                        <input class="input1" type="text" onChange={this.updateemail2} name="email2" />
+                        <p>New Email</p>
+                        <input class="input1" type="text" onChange={this.updateemail} name="email" />
+                        <button type="submit">Update</button>
+                        <button>Cancel</button>
+                    </form>
                 </div>
             )
         }
@@ -185,15 +166,15 @@ class Profile extends Component {
         else if (edit == "phone") {
             button = (
                 <div>
-                <form onSubmit={this.handleupdatephone}>
-                <h3>Edit Phone</h3>
-                <p>New Phone</p>
-                <input class="input1" type="text" onChange={this.updatephone} name="phone"/>
-                <p>current Email</p>
-                <input class="input1" type="text" onChange={this.updateemail} name="email"/>
-                <button type="submit">Update</button>
-                <button>Cancel</button>
-                </form>
+                    <form onSubmit={this.handleupdatephone}>
+                        <h3>Edit Phone</h3>
+                        <p>New Phone</p>
+                        <input class="input1" type="text" onChange={this.updatephone} name="phone" />
+                        <p>current Email</p>
+                        <input class="input1" type="text" onChange={this.updateemail} name="email" />
+                        <button type="submit">Update</button>
+                        <button>Cancel</button>
+                    </form>
                 </div>
             )
         }
@@ -202,25 +183,25 @@ class Profile extends Component {
         else if (edit == "resname") {
             button = (
                 <div>
-                <form onSubmit={this.handleupdateresname}>
-                <h3>Edit Restaurant Name</h3>
-                <p>New Name</p>
-                <input class="input1" class="input1" type="text" onChange={this.updateresname} name="resname"/>
-                <p>current Email</p>
-                <input class="input1" class="input1" type="text" onChange={this.updateemail} name="email"/>
-                <button type="submit">Update</button>
-                <button>Cancel</button>
-                </form>
+                    <form onSubmit={this.handleupdateresname}>
+                        <h3>Edit Restaurant Name</h3>
+                        <p>New Name</p>
+                        <input class="input1" class="input1" type="text" onChange={this.updateresname} name="resname" />
+                        <p>current Email</p>
+                        <input class="input1" class="input1" type="text" onChange={this.updateemail} name="email" />
+                        <button type="submit">Update</button>
+                        <button>Cancel</button>
+                    </form>
                 </div>
             )
         }
 
-         return (
-           
-           <div>
-               {redirectVar}
-               <div class="s-row">
-               <div class="s-col1 s-col2 u-dimension-2  s-box1">
+        return (
+
+            <div>
+                {redirectVar}
+                <div class="s-row">
+                    <div class="s-col1 s-col2 u-dimension-2  s-box1">
                         <h3 class="account-nav-header">Your Account</h3>
                         <ul class="account-nav-items">
                             <li class="account-nav-items-item"><a href="/profile"><span>Profile</span></a></li>
@@ -243,16 +224,16 @@ class Profile extends Component {
                                         </div>
                                         <div class="edit" tabIndex="0" role="button">Edit</div>
                                     </div>
-                                    
+
                                 </div>
-                               
+
                                 <div class="u-clickable">
                                     <div class="u-flex u-flex-justify u-flex-align">
                                         <div class="u-mar1">
                                             <div class="s-list-item-primary u-mar1">Name </div>
                                             <div class="s-list-item-secondary u-mar1">
                                                 <span class="span">{this.props.name}</span></div>
-                                               
+
                                         </div>
                                         <div class="edit" tabIndex="0" onClick={this.handlenameedit} role="button">Edit</div>
                                     </div>
@@ -315,24 +296,23 @@ class Profile extends Component {
                                         <div class="s-list-item-secondary u-mar1">
                                             <span class="span">1234566</span></div>
                                     </div>
-                                    {/* <div class="edit" tabIndex="0" onClick={this.handlepasswordedit} role="button">Edit</div> */}
                                 </div>
                             </div>
-                           
+
                         </form>
                         <div class="u-clickable u-list">
-                                <div class="u-flex u-flex-justify u-flex-align">
-                                    <div class="u-mar1">
+                            <div class="u-flex u-flex-justify u-flex-align">
+                                <div class="u-mar1">
                                     {button}
-                                    </div>
                                 </div>
                             </div>
-                       
+                        </div>
+
                     </div>
 
-                </div> 
+                </div>
             </div>
-            
+
         )
     }
 }
@@ -355,116 +335,106 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         Oncomponentdidmount: (data) => {
-            try{
+            try {
                 console.log("in componentdidmount")
                 var data1 = {
                     email: data.email
                 }
                 console.log(data1.email)
                 axios.defaults.withCredentials = true;
-                axios.post('http://localhost:3001/profile', data1, { headers: { Authorization: localStorage.getItem('token') }}) 
-                        .then((response) => {
-                            console.log(response.data.data);
-                            console.log(response.data.data.cuisine);
-                            sessionStorage.setItem('res_cuisine',response.data.data.cuisine)
-                        //update the state with the response data
-                        dispatch({ type: 'PROFILE', payload: response.data})
-                        
-                    });}catch(e){}
-                },
-           
-        
-        Onhandleupdatename: (e,data) => {
+                axios.post('http://localhost:3001/profile', data1, { headers: { Authorization: localStorage.getItem('token') } })
+                    .then((response) => {
+                        console.log(response.data.data);
+                        console.log(response.data.data.cuisine);
+                        sessionStorage.setItem('res_cuisine', response.data.data.cuisine)
+                        dispatch({ type: 'PROFILE', payload: response.data })
+
+                    });
+            } catch (e) { }
+        },
+
+
+        Onhandleupdatename: (e, data) => {
             //e.preventDefault()
             var info = {
                 name: data.name,
                 email: data.email,
             }
             console.log(info);
-            //set the with credentials to true
             axios.defaults.withCredentials = true;
-            //make a post request with the user data
-            axios.post('http://localhost:3001/updatename', info, { headers: { Authorization: localStorage.getItem('token') }})
+            axios.post('http://localhost:3001/updatename', info, { headers: { Authorization: localStorage.getItem('token') } })
                 .then(response => {
                     console.log("Status Code : ", response);
                     if (response.data.status == 200) {
-                        dispatch({ type: 'UPDATENAME', payload: response.data, statusCode: 200})
+                        dispatch({ type: 'UPDATENAME', payload: response.data, statusCode: 200 })
                     }
                     else if (response.data.status == 201) {
-                        dispatch({ type: 'UPDATENAME', payload: response.data, statusCode: 201})
+                        dispatch({ type: 'UPDATENAME', payload: response.data, statusCode: 201 })
                     }
                 });
-           
+
         },
 
-        Onhandleupdateemail: (e,data) => {
-            //e.preventDefault()
+        Onhandleupdateemail: (e, data) => {
             console.log(data)
             var infoemail = {
                 email: data.email,
                 email2: data.email2
             }
-            //console.log(infoemail);
-            //set the with credentials to true
             axios.defaults.withCredentials = true;
-            //make a post request with the user data
-            axios.post('http://localhost:3001/updateemail', infoemail, { headers: { Authorization: localStorage.getItem('token') }})
+            axios.post('http://localhost:3001/updateemail', infoemail, { headers: { Authorization: localStorage.getItem('token') } })
                 .then(response => {
                     console.log("Status Code : ", response);
                     if (response.data.status == 200) {
-                        dispatch({ type: 'UPDATEEMAIL', payload: response.data, statusCode: 200})
+                        dispatch({ type: 'UPDATEEMAIL', payload: response.data, statusCode: 200 })
                     }
                     else if (response.data.status == 201) {
-                        dispatch({ type: 'UPDATEEMAIL', payload: response.data, statusCode: 201})
+                        dispatch({ type: 'UPDATEEMAIL', payload: response.data, statusCode: 201 })
                     }
                 });
-           
+
         },
 
-        Onhandleupdatephone: (e,data) => {
+        Onhandleupdatephone: (e, data) => {
             //e.preventDefault()
             var infophone = {
-            phone: data.phone,
-            email: data.email
+                phone: data.phone,
+                email: data.email
             }
             console.log(infophone);
-            //set the with credentials to true
             axios.defaults.withCredentials = true;
-            //make a post request with the user data
-            axios.post('http://localhost:3001/updatephone', infophone, { headers: { Authorization: localStorage.getItem('token') }})
+            axios.post('http://localhost:3001/updatephone', infophone, { headers: { Authorization: localStorage.getItem('token') } })
                 .then(response => {
                     console.log("Status Code : ", response);
                     if (response.data.status == 200) {
-                        dispatch({ type: 'UPDATEPHONE', payload: response.data, statusCode: 200})
+                        dispatch({ type: 'UPDATEPHONE', payload: response.data, statusCode: 200 })
                     }
                     else if (response.data.status == 201) {
-                        dispatch({ type: 'UPDATEPHONE', payload: response.data, statusCode: 201})
+                        dispatch({ type: 'UPDATEPHONE', payload: response.data, statusCode: 201 })
                     }
                 });
-           
+
         },
 
-        Onhandleupdateresname: (e,data) => {
+        Onhandleupdateresname: (e, data) => {
             //e.preventDefault()
             var inforesname = {
-            resname: data.resname,
-            email: data.email
+                resname: data.resname,
+                email: data.email
             }
             console.log(inforesname);
-            //set the with credentials to true
             axios.defaults.withCredentials = true;
-            //make a post request with the user data
-            axios.post('http://localhost:3001/updateresname', inforesname, { headers: { Authorization: localStorage.getItem('token') }})
+            axios.post('http://localhost:3001/updateresname', inforesname, { headers: { Authorization: localStorage.getItem('token') } })
                 .then(response => {
                     console.log("Status Code : ", response);
                     if (response.data.status == 200) {
-                        dispatch({ type: 'UPDATERESNAME', payload: response.data, statusCode: 200})
+                        dispatch({ type: 'UPDATERESNAME', payload: response.data, statusCode: 200 })
                     }
                     else if (response.data.status == 201) {
-                        dispatch({ type: 'UPDATERESNAME', payload: response.data, statusCode: 201})
+                        dispatch({ type: 'UPDATERESNAME', payload: response.data, statusCode: 201 })
                     }
                 });
-           
+
         },
 
 

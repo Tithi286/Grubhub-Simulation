@@ -9,7 +9,6 @@ import { connect } from "react-redux";
 import Draggable from 'react-draggable';
 
 
-//create the Navbar Component
 class UpcomingOrders extends Component {
     constructor(props) {
         super(props);
@@ -31,16 +30,6 @@ class UpcomingOrders extends Component {
             email: this.state.email
         }
         this.props.oncomponentDidMount(data);
-        // axios.defaults.withCredentials = true;
-        // axios.post('http://localhost:3001/upcomingorders',data, { headers: { Authorization: localStorage.getItem('token') }})
-        //         .then((response) => {
-        //         //update the state with the response data
-        //         this.setState({
-        //             orders : response.data.data
-        //         });
-        //         console.log(response.data)
-        //         console.log(this.state.orders)
-        //     });
     }
 
     handleDrag = (e, ui) => {
@@ -75,59 +64,59 @@ class UpcomingOrders extends Component {
                                 </div>
                             </div></div>
                     </Draggable>
-                    </div>
+                </div>
 
-                    )
-                })
-        
-        
-                return (
+            )
+        })
+
+
+        return (
             <div>
-                        {redirectVar}
-                        <div class="s-row">
-                            <div class="s-col1 s-col2 u-dimension-2  s-box1">
-                                <h3 class="account-nav-header">Your Account</h3>
-                                <ul class="account-nav-items">
-                                    <li class="account-nav-items-item"><Link to="/profile"><span>Profile</span></Link></li>
-                                    <li class="account-nav-items-item"><Link to="/home"><span>Home</span></Link></li>
-                                    <li class="account-nav-items-item"><Link to="/pastorders"><span>Past Orders</span></Link></li>
-                                    <li class="account-nav-items-item"><Link to="/upcomingorders"><span>Upcoming Orders</span></Link></li>
-                                </ul>
-                            </div>
-                            <div class="account-content u-block s-col2 s-box1 s-col-md-9">
-                                <form role="form">
-                                    <div class="u-list ">
-                                        <div class="u-list-heading h5">
-                                            <div class>UPCOMING ORDERS</div>
-                                        </div>
-
-                                        {details}
-
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                {redirectVar}
+                <div class="s-row">
+                    <div class="s-col1 s-col2 u-dimension-2  s-box1">
+                        <h3 class="account-nav-header">Your Account</h3>
+                        <ul class="account-nav-items">
+                            <li class="account-nav-items-item"><Link to="/profile"><span>Profile</span></Link></li>
+                            <li class="account-nav-items-item"><Link to="/home"><span>Home</span></Link></li>
+                            <li class="account-nav-items-item"><Link to="/pastorders"><span>Past Orders</span></Link></li>
+                            <li class="account-nav-items-item"><Link to="/upcomingorders"><span>Upcoming Orders</span></Link></li>
+                        </ul>
                     </div>
-                    )
-                }
-            }
-            
+                    <div class="account-content u-block s-col2 s-box1 s-col-md-9">
+                        <form role="form">
+                            <div class="u-list ">
+                                <div class="u-list-heading h5">
+                                    <div class>UPCOMING ORDERS</div>
+                                </div>
+
+                                {details}
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
 const mapStateToProps = state => {
     return {
-                        orders: state.upcomingorders.orders
-                }
-            }
+        orders: state.upcomingorders.orders
+    }
+}
 const mapDispatchToProps = dispatch => {
     return {
-                        oncomponentDidMount: (data) => {
+        oncomponentDidMount: (data) => {
             const value = {
-                        email: data.email,
-                }
-                console.log(value)
-                axios.defaults.withCredentials = true;
-            axios.post('http://localhost:3001/upcomingorders', value, {headers: {Authorization: localStorage.getItem('token') } })
+                email: data.email,
+            }
+            console.log(value)
+            axios.defaults.withCredentials = true;
+            axios.post('http://localhost:3001/upcomingorders', value, { headers: { Authorization: localStorage.getItem('token') } })
                 .then((response) => {
-                        console.log(response)
+                    console.log(response)
                     console.log(response.data.message)
                     if (response.status == 200) {
                         dispatch({ type: 'UPCOMINGOREDERS', payload: response.data, statusCode: 200 })
@@ -136,14 +125,14 @@ const mapDispatchToProps = dispatch => {
                         dispatch({ type: 'UPCOMINGOREDERS', payload: response.data, statusCode: 400 })
                     }
 
-                    })
+                })
                 .catch((error) => {
 
-                    });
-            }
+                });
         }
     }
-    
+}
+
 export default reduxForm({
-                        form: "upcomingorders"
-                })(connect(mapStateToProps, mapDispatchToProps)(UpcomingOrders));
+    form: "upcomingorders"
+})(connect(mapStateToProps, mapDispatchToProps)(UpcomingOrders));

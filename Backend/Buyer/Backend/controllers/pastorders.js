@@ -1,10 +1,10 @@
 var connection = require('../config');
 var { mongoose } = require('.././db/mongoose');
-var {Orders} = require('.././models/res_orders');
+var { Orders } = require('.././models/res_orders');
 var kafka = require('../kafka/client')
 
-module.exports.pastorders = function(req,res) {
-   
+module.exports.pastorders = function (req, res) {
+
     kafka.make_request('buyer_pastorders', req.body, function (err, result) {
         console.log("search")
         if (result) {
@@ -27,4 +27,4 @@ module.exports.pastorders = function(req,res) {
         }
     });
 
-    }
+}

@@ -8,8 +8,6 @@ import jwt_decode from 'jwt-decode';
 import { login } from "../../actions";
 import cookie from 'react-cookies';
 
-
-//create the Navbar Component
 class Profile extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +16,7 @@ class Profile extends Component {
             firstname: "",
             lastname: "",
             email: "",
-            email2:"",
+            email2: "",
             phone: "",
             password: ""
 
@@ -26,8 +24,6 @@ class Profile extends Component {
         this.handlenameedit = this.handlenameedit.bind(this);
         this.handleemailedit = this.handleemailedit.bind(this);
         this.handlephoneedit = this.handlephoneedit.bind(this);
-        // this.handleresnameedit = this.handleresnameedit.bind(this);
-        //this.handlecuisineclick = this.handlecuisineclick.bind(this);
         this.handlepasswordedit = this.handlepasswordedit.bind(this);
         this.updatefirstname = this.updatefirstname.bind(this);
         this.updatelastname = this.updatelastname.bind(this);
@@ -39,7 +35,7 @@ class Profile extends Component {
         this.handleupdatephone = this.handleupdatephone.bind(this);
 
     }
-    componentDidMount(){
+    componentDidMount() {
         var data = {
             email: localStorage.getItem('decoded_email')
         }
@@ -79,8 +75,8 @@ class Profile extends Component {
             email: this.state.email,
         }
         console.log(data);
-        this.props.Onhandleupdatename(e,data)
-        
+        this.props.Onhandleupdatename(e, data)
+
     }
 
     handleupdateemail = (e) => {
@@ -89,18 +85,16 @@ class Profile extends Component {
             email: this.state.email,
             email2: this.state.email2
         }
-        //console.log(data);
-        this.props.Onhandleupdateemail(e,data)
+        this.props.Onhandleupdateemail(e, data)
     }
 
     handleupdatephone = (e) => {
-        //e.preventDefault();
         var data = {
             phone: this.state.phone,
             email: this.state.email
         }
         console.log(data);
-        this.props.Onhandleupdatephone(e,data)
+        this.props.Onhandleupdatephone(e, data)
 
     }
     render() {
@@ -109,7 +103,7 @@ class Profile extends Component {
             console.log("in cookie if")
             redirectVar = <Redirect to="/login" />
         }
-        
+
         const edit = this.state.edit;
         let button;
 
@@ -131,7 +125,7 @@ class Profile extends Component {
                 </div>
             )
         }
-        
+
 
         else if (edit == "email") {
             button = (
@@ -170,13 +164,13 @@ class Profile extends Component {
         else if (edit == "password") {
             button = (
                 <div>
-                <form>
-                <h3>Edit Password</h3><br/>
-                <p>New Password</p><br/>
-                <input type="text" name="password"/><br/>
-                <button type="submit">Update</button>
-                <button>Cancel</button>
-                </form>
+                    <form>
+                        <h3>Edit Password</h3><br />
+                        <p>New Password</p><br />
+                        <input type="text" name="password" /><br />
+                        <button type="submit">Update</button>
+                        <button>Cancel</button>
+                    </form>
                 </div>
             )
         }
@@ -187,7 +181,7 @@ class Profile extends Component {
                     <div class="s-col1 s-col2 u-dimension-2  s-box1">
                         <h3 class="account-nav-header">Your Account</h3>
                         <ul class="account-nav-items">
-                        <li class="account-nav-items-item"><Link to="/profile"><span>Profile</span></Link></li>
+                            <li class="account-nav-items-item"><Link to="/profile"><span>Profile</span></Link></li>
                             <li class="account-nav-items-item"><Link to="/home"><span>Home</span></Link></li>
                             <li class="account-nav-items-item"><Link to="/pastorders"><span>Past Orders</span></Link></li>
                             <li class="account-nav-items-item"><Link to="/upcomingorders"><span>Upcoming Orders</span></Link></li>
@@ -245,7 +239,6 @@ class Profile extends Component {
                                         <div class="s-list-item-secondary u-mar1">
                                             <span class="span">1234566</span></div>
                                     </div>
-                                    {/* <div class="edit" tabIndex="0" onClick={this.handlepasswordedit} role="button">Edit</div> */}
                                 </div>
                             </div>
                         </form>
@@ -270,31 +263,31 @@ const mapStateToProps = state => {
         lname: state.profile.lname,
         email: state.profile.email,
         phone: state.profile.phone,
-        
+
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         Oncomponentdidmount: (data) => {
-            try{
+            try {
                 console.log("in componentdidmount")
                 var data1 = {
                     email: data.email
                 }
                 console.log(data1.email)
                 axios.defaults.withCredentials = true;
-                axios.post('http://localhost:3001/profile', data1, { headers: { Authorization: localStorage.getItem('token') }}) 
-                        .then((response) => {
-                            console.log(response.data.data);
-                        //update the state with the response data
-                        dispatch({ type: 'PROFILE', payload: response.data})
-                        
-                    });}catch(e){}
-                },
-           
-        
-        Onhandleupdatename: (e,data) => {
+                axios.post('http://localhost:3001/profile', data1, { headers: { Authorization: localStorage.getItem('token') } })
+                    .then((response) => {
+                        console.log(response.data.data);
+                        dispatch({ type: 'PROFILE', payload: response.data })
+
+                    });
+            } catch (e) { }
+        },
+
+
+        Onhandleupdatename: (e, data) => {
             //e.preventDefault()
             var info = {
                 firstname: data.firstname,
@@ -302,67 +295,60 @@ const mapDispatchToProps = dispatch => {
                 email: data.email,
             }
             console.log(info);
-            //set the with credentials to true
             axios.defaults.withCredentials = true;
-            //make a post request with the user data
-            axios.post('http://localhost:3001/updatename', info, { headers: { Authorization: localStorage.getItem('token') }})
+            axios.post('http://localhost:3001/updatename', info, { headers: { Authorization: localStorage.getItem('token') } })
                 .then(response => {
                     console.log("Status Code : ", response);
                     if (response.data.status == 200) {
-                        dispatch({ type: 'UPDATENAME', payload: response.data, statusCode: 200})
+                        dispatch({ type: 'UPDATENAME', payload: response.data, statusCode: 200 })
                     }
                     else if (response.data.status == 201) {
-                        dispatch({ type: 'UPDATENAME', payload: response.data, statusCode: 201})
+                        dispatch({ type: 'UPDATENAME', payload: response.data, statusCode: 201 })
                     }
                 });
-           
+
         },
 
-        Onhandleupdateemail: (e,data) => {
+        Onhandleupdateemail: (e, data) => {
             //e.preventDefault()
             console.log(data)
             var infoemail = {
                 email: data.email,
                 email2: data.email2
             }
-            //console.log(infoemail);
-            //set the with credentials to true
             axios.defaults.withCredentials = true;
-            //make a post request with the user data
-            axios.post('http://localhost:3001/updateemail', infoemail, { headers: { Authorization: localStorage.getItem('token') }})
+            axios.post('http://localhost:3001/updateemail', infoemail, { headers: { Authorization: localStorage.getItem('token') } })
                 .then(response => {
                     console.log("Status Code : ", response);
                     if (response.data.status == 200) {
-                        dispatch({ type: 'UPDATEEMAIL', payload: response.data, statusCode: 200})
+                        dispatch({ type: 'UPDATEEMAIL', payload: response.data, statusCode: 200 })
                     }
                     else if (response.data.status == 201) {
-                        dispatch({ type: 'UPDATEEMAIL', payload: response.data, statusCode: 201})
+                        dispatch({ type: 'UPDATEEMAIL', payload: response.data, statusCode: 201 })
                     }
                 });
-           
+
         },
 
-        Onhandleupdatephone: (e,data) => {
+        Onhandleupdatephone: (e, data) => {
             //e.preventDefault()
             var infophone = {
-            phone: data.phone,
-            email: data.email
+                phone: data.phone,
+                email: data.email
             }
             console.log(infophone);
-            //set the with credentials to true
             axios.defaults.withCredentials = true;
-            //make a post request with the user data
-            axios.post('http://localhost:3001/updatephone', infophone, { headers: { Authorization: localStorage.getItem('token') }})
+            axios.post('http://localhost:3001/updatephone', infophone, { headers: { Authorization: localStorage.getItem('token') } })
                 .then(response => {
                     console.log("Status Code : ", response);
                     if (response.data.status == 200) {
-                        dispatch({ type: 'UPDATEPHONE', payload: response.data, statusCode: 200})
+                        dispatch({ type: 'UPDATEPHONE', payload: response.data, statusCode: 200 })
                     }
                     else if (response.data.status == 201) {
-                        dispatch({ type: 'UPDATEPHONE', payload: response.data, statusCode: 201})
+                        dispatch({ type: 'UPDATEPHONE', payload: response.data, statusCode: 201 })
                     }
                 });
-           
+
         },
 
 

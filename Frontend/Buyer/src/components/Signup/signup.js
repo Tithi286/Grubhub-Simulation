@@ -1,8 +1,3 @@
-// import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-import cookie from 'react-cookies';
-// import {Redirect} from 'react-router';
-
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
@@ -59,44 +54,7 @@ class Signup extends Component {
             pwd: e.target.value
         })
     }
-    // submitSignUp = (e) => {
-    //     var headers = new Headers();
-    //     //prevent page from refresh
-    //     //e.preventDefault();
-    //     const data = {
-    //         fName: this.state.fName,
-    //         lName: this.state.lName,
-    //         email: this.state.email,
-    //         phone: this.state.phone,
-    //         pwd: this.state.password,
-          
-            
-    //     }
-    //     console.log(data);
-    //     //set the with credentials to true
-    //     axios.defaults.withCredentials = true;
-    //     //make a post request with the user data
-    //     axios.post('http://localhost:3001/signup', data)
-    //         .then(response => {
-    //             console.log("Status Code : ", response.status);
-    //             if (response.status === 400) {
-    //                 this.setState({
-    //                  msg : response.data.message
-    //                 })
-    //             if(response.status==200){
-    //                 this.setState({
-    //                     authFlag: true
-    //                 })
-    //             }
-    //             }
-    //         })
-    //         .catch(error => {
-    //             this.setState({
-    //                 msg: error.response.data.error
-    //             })
-    //         });
-    // }
-
+    
     submitSignUp(values) {
         this.props.onSubmitHandle(values)
     }
@@ -251,8 +209,6 @@ function validate(values) {
         errors.password = "Enter Password";
     }
 
-    // If errors is empty, the form is fine to submit
-    // If errors has *any* properties, redux form assumes form is invalid
     return errors;
 }
 
@@ -280,21 +236,9 @@ const mapDispatchToProps = dispatch => {
                 .then((response) => {
                     console.log(response)
                     console.log(response.data.message)
-                    
-                    // localStorage.setItem('token', response.data.token);
-                    // const decoded = jwt_decode(response.data.token);
-                    // localStorage.setItem('decoded_email', decoded.email);
-                    // localStorage.setItem('decoded_id', decoded.id);
-                    // localStorage.setItem('decoded_fname', decoded.fname);
-                    // localStorage.setItem('decoded_lname', decoded.lname);
                     dispatch({ type: 'SIGNUP', payload: response, statusCode: 200})
                 })
-                .catch((error) => {
-                    
-                    // var err = error;
-                    // console.log(JSON.parse(error));
-                    //  dispatch({ type: 'SIGNUP', payload: error.response.data, statusCode: error.response.status })
-                });
+                .catch((error) => {});
         }
     }
 }

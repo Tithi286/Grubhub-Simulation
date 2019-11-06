@@ -23,8 +23,6 @@ function handle_request(msg, callback){
             bcrypt.encrypt(buyer.password, function (res1) {
                 hashpassword = res1;
                 buyer.password = hashpassword;
-            //     //var sql = "INSERT INTO buyer_signup (b_id,fname,lname,email,phone,pwd) VALUES (null,'" + buyer.fname + "','" + buyer.lname + "','" + buyer.email + "','"+buyer.phone+"','"+ buyer.pwd + "')";
-            //     //console.log(sql);
                 console.log("hello")
                 buyer.save()
                 .then((result,err) => {

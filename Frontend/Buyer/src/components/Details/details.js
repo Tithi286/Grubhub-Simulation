@@ -23,8 +23,8 @@ class Details extends Component {
             visible: false,
             itemdetail: [],
             total: 0,
-            msg:"",
-            orderSize:""
+            msg: "",
+            orderSize: ""
 
         }
         this.handleclick = this.handleclick.bind(this);
@@ -34,7 +34,8 @@ class Details extends Component {
     handleclick = (e, item) => {
         this.state.itemdetail.push(item);
         this.setState({
-            msg:"Item is successfully added"})
+            msg: "Item is successfully added"
+        })
         console.log(this.state.itemdetail)
     }
     quantitychange = (e) => {
@@ -48,7 +49,7 @@ class Details extends Component {
             }
             console.log(data.res_name)
             axios.defaults.withCredentials = true;
-            axios.post('http://localhost:3001/detail', data, { headers: { Authorization: localStorage.getItem('token') }})
+            axios.post('http://localhost:3001/detail', data, { headers: { Authorization: localStorage.getItem('token') } })
                 .then((response) => {
                     console.log("response")
                     console.log(response.data.data)
@@ -87,7 +88,7 @@ class Details extends Component {
 
     render() {
         console.log(this.state.itemdetail)
-        
+
         let redirectVar = null;
         if (localStorage.getItem('decoded_email') == null) {
             console.log("in cookie if")
@@ -113,7 +114,6 @@ class Details extends Component {
                                                     <span class="span">{item[1]}</span></div>
                                             </div>
                                             <div class="edit" tabIndex="0">${item[2]}</div>
-                                            {/* <input class="edit" tabIndex="0" type="number" onChange={this.quantitychange} placeholder="Quantity"></input> */}
                                             <div class="edit" role="button" onClick={(e) => {
                                                 this.state.total = this.state.total + parseInt(item[2])
                                                 this.handleclick(e, item[0])
@@ -148,7 +148,7 @@ class Details extends Component {
                                     <div>Contact Us: {this.state.phone}</div>
                                     <div class="edit">{this.state.msg}</div>
                                 </div>
-                                
+
                                 <div class="u-list ">
                                     <div class="u-list-heading h5">
                                         <div class="u-flex u-flex-justify u-flex-align">
@@ -172,26 +172,6 @@ class Details extends Component {
                             </div>
                         </form>
                     </div>
-                    {/* <div class="account-content u-block s-col2 s-box1 s-col-md-8 u-dimension-2">
-                    <div class="u-list ">
-                                <div class="u-list-heading color1 h5">
-                                    <div>Add To Cart</div>
-                                </div></div>
-                                <div class="u-list ">
-                                <div class="u-list-heading s-list-item-secondary">
-                                    <div>Added Items</div>
-                                </div></div>
-                                <div class="u-list ">
-                                <div class="u-list-heading h5 ">
-                                    <div>Items Subtotal: </div>
-                                    <div class="edit">Empty Bag </div>
-                                </div></div>
-                                <div class="u-list ">
-                                <div class="u-list-heading">
-                                    <button class="s3-btn "><Link to="">checkout</Link></button>  
-                                </div></div>
-                    
-                    </div> */}
                 </div>
             </div>
         )

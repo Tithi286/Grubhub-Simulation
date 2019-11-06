@@ -7,8 +7,7 @@ function handle_request(msg, callback){
         lastname: msg.lastname,
         email: msg.email
     }
-    // var sql = "UPDATE buyer_signup SET fname='"+name.firstname+"', lname='"+name.lastname+"' WHERE email='"+name.email+"'";
-    // console.log(sql);    
+    
     Buyer.updateOne({email: name.email}, { $set : {"fname": name.firstname, "lname": name.lastname}}) 
     .then((result, err)=>{
         console.log("update name")
